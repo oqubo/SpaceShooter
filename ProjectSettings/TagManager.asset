@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - PowerUp
+  - DisparoEnemigo
+  - DisparoAmigo
+  - Background
+  - PowerUpVelocidad
+  - PowerUpVida
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
 
-[SerializeField] private float velocidad;
+[SerializeField] private float velocidadBase;
 [SerializeField] private float anchoImagen;
 [SerializeField] private Vector3 direccion;
 
@@ -21,7 +21,7 @@ private float resto;
     void Update()
     {
         // resto indica lo que queda de recorrido para alcanzar un nuevo ciclo
-        resto = (velocidad * Time.time) % anchoImagen;
+        resto = (velocidadBase * Time.time) % anchoImagen;
 
         // la posicion se va refrescando desde la inicial sumando lo que queda (el resto) que si es 0 vuelve a moverse a la inicial
         transform.position = posicionInicial + direccion * resto;
