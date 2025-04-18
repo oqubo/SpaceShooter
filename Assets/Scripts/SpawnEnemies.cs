@@ -26,7 +26,7 @@ public class SpawnEnemies : MonoBehaviour
 
         // aumenta el nivel de juego cada 10 segundos
         temporizador += Time.deltaTime;
-        if(temporizador > 10)
+        if(temporizador > 30)
         {
             GameManager.instancia.aumentarNivel();
             temporizador = 0;

@@ -44,7 +44,18 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("DisparoAmigo"))
         {
             vida--;
-            Destroy(other.gameObject);
+            
+            DisparoPlayer poolable = other.GetComponent<DisparoPlayer>();
+            if (poolable != null)
+            {
+                poolable.Release(); // usa método seguro
+            }
+            else
+            {
+                Destroy(other.gameObject); // Por si acaso no vino de la pool
+            }
+
+            //Destroy(other.gameObject);
             Parpadeo();
             
             if (vida == 0)

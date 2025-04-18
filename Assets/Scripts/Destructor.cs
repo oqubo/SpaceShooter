@@ -16,7 +16,15 @@ public class Destructor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Background"))
+        if(other.CompareTag("DisparoAmigo"))
+        {
+            DisparoPlayer poolable = other.GetComponent<DisparoPlayer>();
+            if (poolable != null)
+            {
+                poolable.Release(); // usa método seguro
+            }
+        }
+        else if (!other.CompareTag("Background") && !other.CompareTag("DisparoAmigo"))
         {
             Destroy(other.gameObject);
         }

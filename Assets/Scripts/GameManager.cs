@@ -31,11 +31,11 @@ public class GameManager : MonoBehaviour {
         if (_instancia == null)
         {
             _instancia = this;
-            DontDestroyOnLoad(gameObject); // Persiste entre escenas
+            //DontDestroyOnLoad(gameObject); // Persiste entre escenas
         }
         else
         {
-            Destroy(gameObject); // Elimina duplicados
+            //Destroy(gameObject); // Elimina duplicados
         }
 
         // Limitar FPS en el editor
@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour {
         #else
             Application.targetFrameRate = -1; // Sin límite en compilado
         #endif
+
+
+
 
     }
 
@@ -105,11 +108,7 @@ public class GameManager : MonoBehaviour {
         this.vida -= vida;
         imagenVida.fillAmount = (float)this.vida / 3;
         if (this.vida <= 0) {
-            guardarPartida();
-            textoGameOverNivelMax.text = "Nivel: " + nivel.ToString();
-            textoGameOverPuntosMax.text = "Puntos: " + puntos.ToString();
-            popupGameOver.SetActive(true); // Show the Game Over popup
-            pausar();
+            finalizarPartida();
         }
     }
 
@@ -130,8 +129,17 @@ public class GameManager : MonoBehaviour {
         puntos = 0;
         vida = 3;
         velocidadDisparo = 5;
-        
     }
+
+    public void finalizarPartida(){
+        guardarPartida();
+        textoGameOverNivelMax.text = "Nivel: " + nivel.ToString();
+        textoGameOverPuntosMax.text = "Puntos: " + puntos.ToString();
+        popupGameOver.SetActive(true); // Show the Game Over popup
+        pausar();
+    }
+
+
     public void guardarPartida(){
         if(PlayerPrefs.GetInt ("nivelDesbloqueado") < nivel)
             PlayerPrefs.SetInt("nivelDesbloqueado", nivel);

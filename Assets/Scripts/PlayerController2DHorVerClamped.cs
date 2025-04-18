@@ -1,10 +1,11 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Pool;
 public class PlayerController2DHorVerClamped : MonoBehaviour
 {
 
     [SerializeField] private float speed;
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private DisparoPlayer bulletPrefab;
 
     private float horizontalInput, verticalInput;
 
@@ -13,8 +14,20 @@ public class PlayerController2DHorVerClamped : MonoBehaviour
     private Camera cam;
     private float distanceToCamera;
 
+    private ObjectPool<DisparoPlayer> bulletPool;
 
 
+    void Awake()
+    {
+        bulletPool = new ObjectPool<DisparoPlayer>(
+            CreateBullet,
+            OnGetBullet,
+            OnReleaseBullet,
+            OnDestroyBullet
+        );
+            
+    }
+    
     void Start()
     {
 
@@ -63,7 +76,8 @@ public class PlayerController2DHorVerClamped : MonoBehaviour
         // Disparar
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(bullet, transform.position, Quaternion.identity);
+            DisparoPlayer bullet = bulletPool.Get();
+            bullet.transform.position = transform.position;            
         }
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -101,5 +115,27 @@ public class PlayerController2DHorVerClamped : MonoBehaviour
         }
         
     }
+
+
+    // Object Pool Methods
+    private DisparoPlayer CreateBullet()
+    {
+        DisparoPlayer bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        bullet.myPool = bulletPool;
+        return bullet;
+    }
+    private void OnGetBullet(DisparoPlayer bullet)
+    {
+        bullet.gameObject.SetActive(true);
+    }
+    private void OnReleaseBullet(DisparoPlayer bullet)
+    {
+        bullet.gameObject.SetActive(false);
+    } 
+    private void OnDestroyBullet(DisparoPlayer bullet)
+    {
+        Destroy(bullet.gameObject);
+    }
+
 
 }

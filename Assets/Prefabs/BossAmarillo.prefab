@@ -201,5 +201,5 @@ MonoBehaviour:
   vida: 40
   puntos: 30
   powerUp: {fileID: 0}
-  disparoPrefab: {fileID: 7752856380830800510, guid: 2cb3fadeee36448c2bc3815e9ceb100a, type: 3}
+  disparoPrefab: {fileID: 7752856380830800510, guid: e348b3086867c46309482f90e96cd5f2, type: 3}
   tipoEnemigo: 3

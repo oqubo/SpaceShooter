@@ -12,7 +12,7 @@ public class PowerUpVida : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.Translate(Vector3.left  * GameManager.instancia.velocidad * Time.deltaTime);
     }
 
 
