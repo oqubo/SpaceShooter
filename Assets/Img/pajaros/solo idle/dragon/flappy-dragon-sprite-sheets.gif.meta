@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flappy-dragon-sprite-sheets_0: 1784685242543481399
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

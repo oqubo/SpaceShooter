@@ -18,8 +18,6 @@ public class DisparoPlayer : MonoBehaviour
         {
             isReleased = true;
             myPool?.Release(this);
-
-            Debug.Log("Disparo liberado");
         }
     }
 

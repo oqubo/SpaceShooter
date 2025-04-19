@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Unity.Mathematics;
@@ -115,6 +114,7 @@ public class GameManager : MonoBehaviour {
     public void aumentarVelocidadDisparo(int velocidad) {
         if(velocidad < 30) this.velocidadDisparo += velocidad;
     }
+
     public void cambiarEscena(string escena) { 
         guardarPartida();
         SceneManager.LoadScene(escena); 
