@@ -24,7 +24,7 @@ public class SpawnEnemies : MonoBehaviour
     void Update()
     {
 
-        // aumenta el nivel de juego cada 10 segundos
+        // aumenta el nivel de juego cada x segundos
         temporizador += Time.deltaTime;
         if(temporizador > 30)
         {

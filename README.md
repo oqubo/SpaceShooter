@@ -1,4 +1,3 @@
-# SpaceShooterUnity
 
 ![](img/cover.png)
 

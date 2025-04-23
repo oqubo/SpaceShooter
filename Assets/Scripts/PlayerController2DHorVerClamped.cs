@@ -1,14 +1,16 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Pool;
+using UnityEngine.UI;
 public class PlayerController2DHorVerClamped : MonoBehaviour
 {
 
     [SerializeField] private float speed;
     [SerializeField] private DisparoPlayer bulletPrefab;
-
+    [SerializeField] private Button fireButton;
+    [SerializeField] private Joystick joystick;
+    [SerializeField] private bool isMobile;
     private float horizontalInput, verticalInput;
-
     private Vector3 minBounds, maxBounds, clampedPosition;
 
     private Camera cam;
@@ -31,6 +33,7 @@ public class PlayerController2DHorVerClamped : MonoBehaviour
     void Start()
     {
 
+        ComprobarMovilEscritorio();
         CalcularLimites();
 
     }
@@ -39,9 +42,24 @@ public class PlayerController2DHorVerClamped : MonoBehaviour
     {
         Movimiento();
         DelimitarMovimiento();
-        Disparo();
+        if(!isMobile)
+            if (Input.GetKeyDown(KeyCode.Space))
+                Disparo();
     }
 
+    void ComprobarMovilEscritorio(){
+        isMobile = Application.isMobilePlatform;
+        if (isMobile)
+        {
+            joystick.gameObject.SetActive(true);
+            fireButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            joystick.gameObject.SetActive(false);
+            fireButton.gameObject.SetActive(false);
+        }
+    }
     void CalcularLimites(){
         // Calcula los límites del viewport de la cámara principal en coordenadas del mundo
         cam = Camera.main;
@@ -57,12 +75,23 @@ public class PlayerController2DHorVerClamped : MonoBehaviour
     }
 
     void Movimiento(){
-        // Obtener las pulsaciones
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
 
-        // Mover el objeto
-        transform.Translate(new Vector2(horizontalInput, verticalInput).normalized  * speed * Time.deltaTime);
+        if(isMobile){
+            // Obtener las pulsaciones del joystick
+            horizontalInput = joystick.Horizontal;
+            verticalInput = joystick.Vertical;
+            // Mover el objeto
+            transform.Translate(new Vector2(horizontalInput, verticalInput) * speed * Time.deltaTime);
+        }
+        else{
+            // Obtener las pulsaciones del teclado
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+            // Mover el objeto
+            transform.Translate(new Vector2(horizontalInput, verticalInput).normalized  * speed * Time.deltaTime);
+        }
+
+
     }
 
     void DelimitarMovimiento(){
@@ -72,14 +101,11 @@ public class PlayerController2DHorVerClamped : MonoBehaviour
         transform.position = clampedPosition;
     }
 
-    void Disparo(){
-        // Disparar
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DisparoPlayer bullet = bulletPool.Get();
-            bullet.transform.position = transform.position;            
-        }
+    public void Disparo(){
+        DisparoPlayer bullet = bulletPool.Get();
+        bullet.transform.position = transform.position;            
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy") || other.CompareTag("DisparoEnemigo"))
