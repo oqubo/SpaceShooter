@@ -5,6 +5,8 @@ Este proyecto es una space shooter clásico de vista lateral, con fondo parallax
 
 Enlace itch.io https://oqubo.itch.io/spaceshooter
 
+Documentación [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/oqubo/SpaceShooter)
+
 ## Objetivo del juego
 
 El jugador debe sobrevivir a las oleadas de enemigos, obtiene puntos al eliminarlos y recibe daño con los impactos.  
