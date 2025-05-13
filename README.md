@@ -1,11 +1,18 @@
 
-![](img/cover.png)
+<p align="left">
+  <img src="img/cover.png" alt="Portada del juego" width="250"/>
+</p>
 
-Este proyecto es una space shooter clásico de vista lateral, con fondo parallax, disparos, generación aleatoria de enemigos y jefes finales. 
 
-Enlace itch.io https://oqubo.itch.io/spaceshooter
+<a href="https://oqubo.itch.io/spaceshooter" target="_blank">
+  <img src="https://static.itch.io/images/badge.svg" alt="Jugar a SpaceShooter en itch.io" width="200"/>
+</a>
 
-Documentación [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/oqubo/SpaceShooter)
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-oqubo/SpaceShooter-181717?logo=github)](https://github.com/oqubo/SpaceShooter)
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/oqubo/SpaceShooter)
+
+Este proyecto es un space shooter clásico de vista lateral, con fondo parallax, disparos, generación aleatoria de enemigos y jefes finales. 
 
 ## Objetivo del juego
 
